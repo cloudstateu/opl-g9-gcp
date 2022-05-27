@@ -1,0 +1,25 @@
+doctype html
+html(lang="pl-PL")
+  head
+    meta(charset="UTF-8")
+    title Frontend application
+    style
+      include style.css
+  body
+    nav
+      a(class='text', href='/') Szkolenie
+    main
+      h1 Szkolenie Google Cloud Platform
+      p(class='text') Szkolenie podczas którego nauczysz się wykorzystywać Cloud Operations suite w praktyce
+
+      if paid && order && order.id
+        p.success Zgłoszenie #{order.id} zostało opłacone!
+        a(class='text', href='/') Wróć na stronę główną
+      else if order && order.id
+        p.success Zgłoszenie #{order.id} zostało przyjęte!
+        form(action="/pay", method="post")
+          input(type="hidden", name="orderId", value=order.id)
+          input(type="submit", value="Płacę")
+      else
+        form(action="/order", method="post")
+          input(type="submit", value="Zgłaszam się!")
